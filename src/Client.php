@@ -14,6 +14,7 @@ namespace Akamai\Open\EdgeGrid;
 use Akamai\Open\EdgeGrid\Handler\Authentication as AuthenticationHandler;
 use Akamai\Open\EdgeGrid\Handler\Debug as DebugHandler;
 use Akamai\Open\EdgeGrid\Handler\Verbose as VerboseHandler;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Akamai {OPEN} EdgeGrid Client for PHP
@@ -120,10 +121,9 @@ class Client extends \GuzzleHttp\Client implements \Psr\Log\LoggerAwareInterface
      * @param string $method
      * @param string $uri
      * @param array $options
-     * @return \GuzzleHttp\Promise\PromiseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function requestAsync($method, $uri = null, array $options = [])
+    public function requestAsync($method, $uri = null, array $options = []): PromiseInterface
     {
         $options = $this->setRequestOptions($options);
 
@@ -141,10 +141,8 @@ class Client extends \GuzzleHttp\Client implements \Psr\Log\LoggerAwareInterface
      *
      * @param \Psr\Http\Message\RequestInterface $request The HTTP request
      * @param array $options Request options
-     *
-     * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendAsync(\Psr\Http\Message\RequestInterface $request, array $options = [])
+    public function sendAsync(\Psr\Http\Message\RequestInterface $request, array $options = []): PromiseInterface
     {
         $options = $this->setRequestOptions($options);
 
